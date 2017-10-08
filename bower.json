@@ -1,0 +1,14 @@
+{
+  "name": "scheduler",
+  "description": "Scheduler App",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angularjs-datepicker": "2.1.23",
+    "bootstrap": "3.3.x",
+    "components-font-awesome": "^4.7.0"
+  }
+}

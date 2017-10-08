@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+              <div class="row top-10 bottom-10">
+                    <div class="col-md-6 col-sm-6">
+                        <h4>Schedules:</h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button type="button" class="btn secondary-color full-curve pull-right" ng-click="vm.goBack()">Add More +</button>
+                    </div>
+              </div>      
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Scheduled Date</th>
+                    <th>Scheduled Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="schedule in vm.schedules">
+                    <td>{{ schedule.date }}</td>
+                    <td>{{ schedule.time }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
