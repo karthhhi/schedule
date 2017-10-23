@@ -17,8 +17,13 @@
         
         // Service methods
         
-        function setSchedule(scheduledDate,scheduledTime){
-            service.schedulesArray.push({date:scheduledDate,time:scheduledTime});
+        function setSchedule(scheduledDate,scheduledTime){            
+            if(scheduledDate && scheduledTime){
+                service.schedulesArray.push({date:scheduledDate,time:scheduledTime});
+                return true;
+            } else {
+                return false;
+            }
         }
         
         /*
@@ -26,7 +31,7 @@
          * this can later be changed to actual API call after integrating with backend service calls
          */
         function getTimeSlotsByDate(scheduledDate){
-            return $http.get('data/available-schedules.json')
+            return $http.get('mocks/available-schedules.json')
                 .then(function success(res){
                         if (res.data[scheduledDate] != undefined) {
                             return res.data[scheduledDate];

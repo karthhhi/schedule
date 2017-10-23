@@ -7,6 +7,7 @@
         .component('scheduler', {
             templateUrl: 'components/scheduler/scheduler.view.html',
             controller: schedulerController,
+            controllerAs: 'vm',
             bindings: {
                 redirectPath: '@'
             }
@@ -18,26 +19,26 @@
         var vm = this;
         vm.redirectPath = '';
         vm.timeSlots = {};
-        vm.error = 0;
+        vm.error = false;
         vm.availabletimeSlots = function() {
-                                    schedulerService.getTimeSlotsByDate(vm.scheduledDate).then(function (data) {
+                                    schedulerService.getTimeSlotsByDate(vm.scheduledDate).then(
+                                        function (data) {
                                         if (!angular.equals(data, {})) {
                                             vm.timeSlots = data;
-                                            vm.error = 0;
+                                            vm.error = false;
                                         } else {
                                             vm.timeSlots = {};
-                                            vm.error = 1;
-                                            vm.message = "No time slots found for selected date";
+                                            vm.error = true;
+                                            vm.message = "No time slots found for selected date, please choose another date";
                                         }
                                     });
                                 };
         vm.addSchedule = function (){
-                            if(vm.scheduledDate && vm.scheduledTime){
-                                schedulerService.setSchedule(vm.scheduledDate,vm.scheduledTime);
+                           if(schedulerService.setSchedule(vm.scheduledDate,vm.scheduledTime)){
                                 $location.path('/'+vm.redirectPath);
-                                vm.error = 0;
+                                vm.error = false;
                             } else {
-                                vm.error = 1;
+                                vm.error = true;
                                 vm.message = "Please enter schedule date and time";
                             }
                           };  
